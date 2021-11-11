@@ -1,0 +1,15 @@
+$primary-font: "Space Grotesk", sans-serif;
+
+body {
+    margin: 0;
+    font-family: $primary-font;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p, h1, h2, h3, h4, h5, h6, select, input, textarea, a {
+    margin: 0;
+    color: $black;
+    font-style: normal;
+    font-family: $primary-font;
+}
