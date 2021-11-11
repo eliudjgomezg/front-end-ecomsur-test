@@ -1,0 +1,57 @@
+.header-container {
+  position: fixed;
+  top: -1rem;
+  left: 0;
+    width: 100%;
+    border-bottom: 1px solid $light-gray;
+    background-color: $white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+
+    h1 {
+        color: $primary;
+
+        @include breakpoint(mobile) {
+            font-size: 1.5rem;
+        }
+    }
+
+    h2 {
+        color: $gray;
+        margin: 0 .5rem;
+        font-weight: 300;
+    }
+
+    &__actions-desktop {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        cursor: pointer;
+
+        @include breakpoint(mobile) {
+            display: none;
+        }
+    }
+
+    &__actions-items {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin: 0 .3rem;
+        }
+    }
+
+    &__actions-mobile {
+        display: none;
+
+        @include breakpoint(mobile) {
+            display: block;
+        }
+    }
+}

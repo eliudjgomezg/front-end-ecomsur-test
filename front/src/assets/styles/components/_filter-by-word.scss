@@ -1,0 +1,40 @@
+.filter-by-word {
+    display: grid;
+    grid-template-columns: 12rem 1fr 3rem;
+    height: 3rem;
+    background-color: $primary;
+    width: 80%;
+    padding-left: 1rem;
+    border-radius: 1.5rem;
+
+    @include breakpoint(mobile) {
+        grid-template-columns: 1fr 3rem;
+        width: 100%;
+        padding-left: unset;
+    }
+
+
+    div {
+        align-self: center;
+
+        h3 {
+            color: $white;
+        }
+    }
+
+    i {
+        align-self: center;
+        justify-self: center;
+        color: $white;
+    }
+
+    input {
+        background-color: $white;
+        border: 2px solid $primary;
+        padding: 0 1rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -1,2 +1,14 @@
-@import 'base/colors.scss';
-@import 'base/html-core.scss';
+@import "abstract/mixins.scss";
+
+@import "base/colors.scss";
+@import "base/html-core.scss";
+
+@import "components/filter-by-word.scss";
+@import "components/products.scss";
+@import "components/product-card.scss";
+
+@import "layouts/web-layout.scss";
+@import "layouts/header.scss";
+@import "layouts/footer.scss";
+
+@import "utils/utils.scss";

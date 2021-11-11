@@ -1,0 +1,64 @@
+.products-grid {
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    column-gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+
+    @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+        column-gap: unset;
+        row-gap: 1rem;
+        padding: 0;
+    }
+}
+
+.filters {
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            color: $red;
+            padding-right: 1rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: unset;
+            }
+        }
+    }
+
+    h3 {
+        color: $primary;
+    }
+
+    p {
+        cursor: pointer;
+        padding-left: .3rem;
+        color: $gray;
+
+        &:hover {
+            background-color: $light-gray;
+            transition: all .3s;
+        }
+    }
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1.5rem;
+
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+    @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+        grid-row: 1rem;
+        grid-column: unset;
+    }
+}
