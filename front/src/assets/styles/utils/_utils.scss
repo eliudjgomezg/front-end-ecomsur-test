@@ -1,0 +1,117 @@
+.primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    background-color: $secondary;
+    color: white;
+    font-size: large;
+    font-family: $primary-font;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    border: none !important;
+    border-radius: 1.5rem;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.button-disabled {
+        background-color: $light-gray !important;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+//Display
+.flex {
+    display: flex;
+}
+
+.alig-center {
+    display: flex;
+    align-items: center;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.total-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-desktop {
+    display: block;
+}
+
+.d-mobile {
+    display: none;
+}
+
+//Spacings
+.pt-4 {
+    padding: 4rem 0;
+}
+
+.px-1 {
+    padding: 0 1rem;
+}
+
+.px-2 {
+    padding: 0 2rem;
+}
+
+.px-4 {
+    padding: 0 4rem;
+}
+
+.mx-auto {
+    margin: auto;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mr-05 {
+    margin-right: .5rem;
+}
+
+//hovers
+.hover\:bg-light-gray {
+    &:hover {
+        background-color: $light-gray;
+        transition: all .3s;
+    }
+}
+
+//Borders
+.border-r-gray {
+    border-right: 1px solid $light-gray;
+}
+
+//Others
+.cursor-pointer {
+    cursor: pointer;
+}
+
+@include breakpoint(mobile) {
+    .d-desktop {
+        display: none;
+    }
+
+    .d-mobile {
+        display: block;
+    }
+}

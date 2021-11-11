@@ -1,0 +1,15 @@
+.container {
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+
+    @include breakpoint(mobile) {
+        padding: 0 1rem;
+    }
+
+    &__spacing {
+        height: 4.5rem;
+    }
+}
+

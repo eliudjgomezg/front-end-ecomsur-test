@@ -1,0 +1,44 @@
+.footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid: 1rem;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+
+    @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+    }
+
+    div {
+        h3 {
+            margin-bottom: .5rem;
+            color: $white;
+        }
+
+        p {
+            color: $white;
+            margin-bottom: .5rem;
+
+            &:hover {
+                color: $gray;
+                transition: all 0.3s;
+            }
+        }
+
+        @include breakpoint(mobile) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__column-one {
+        h1 {
+            margin-bottom: 2rem;
+            color: $white;
+        }
+
+        i {
+            margin: .8rem  .5rem;
+            color: $white;
+        }
+    }
+}

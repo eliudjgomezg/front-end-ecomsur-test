@@ -1,21 +1,12 @@
-import { useProductQuery, useProductsQuery } from 'customHooks/request/productsQuery'
+import { useEffect, useState } from 'react'
 import { IProduct } from 'models/IProduct'
 import { selectProductList } from 'store/productsStore/reducer'
-import { connect, Matching } from 'react-redux'
+import { connect } from 'react-redux'
 import { IReduxState } from 'models/IReduxStore'
-import { ISetProductListReturn } from 'models/IProductListAction'
+import useFilterByWord from 'customHooks/useFilterByWord'
 
-type THome = {
-  productList?: IProduct[]
-}
-
-const Home: React.FC<THome> = (props) => {
-  console.log(props.productList)
-  return (
-    <div>
-      <img src={`http://localhost:5000/images/airpods.jpg`} alt='' />
-    </div>
-  )
+const Home: React.FC = (props) => {
+  return <div>home</div>
 }
 
 const mapStateToProps = (state: IReduxState) => {

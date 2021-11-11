@@ -1,0 +1,43 @@
+.lg\:block {
+    @media screen and (min-width: 1024px) {
+        display: block !important;
+    }
+}
+
+.md\:block {
+    @media screen and (min-width: 768px) {
+        display: block !important;
+    }
+}
+
+.tablet\:block {
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        display: block !important;
+    }
+}
+
+.block {
+    display: block !important;
+}
+
+.lg\:hidden {
+    @media screen and (min-width: 1024px) {
+        display: none !important;
+    }
+}
+
+.md\:hidden {
+    @media screen and (min-width: 768px) {
+        display: none !important;
+    }
+}
+
+.tablet\:hidden {
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        display: none !important;
+    }
+}
+
+.hidden {
+    display: none !important;
+}

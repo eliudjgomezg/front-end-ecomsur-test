@@ -1,1 +1,31 @@
-$black: #000000
+$primary: #00d879;
+$secondary: #0042fd;
+$black: #000000;
+$white: #ffffff;
+$gray: #7a7a7a;
+$light-gray: #cccccc;
+$red: #ff0041;
+
+$box-shadow-1: 0px 20px 30px rgba(0, 0, 0, 0.08);
+
+//Text colors
+.text-primary {
+    color: $primary;
+}
+
+.text-red {
+    color: $red;
+}
+
+.text-gray {
+    color: $gray;
+}
+
+//Background colors
+.bg-primary {
+    background-color: $primary;
+}
+
+.bg-light-gray {
+    background-color: $light-gray;
+}
