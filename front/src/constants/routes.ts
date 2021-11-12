@@ -1,7 +1,7 @@
 const routes = {
   home: '/',
   products: '/productos',
-  cart: '/carrito',
+  cart: '/productos/carro',
 }
 
 export default routes

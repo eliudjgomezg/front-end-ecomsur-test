@@ -1,5 +1,7 @@
+import PaymentDetail from 'components/Cart/PaymentDetail'
+
 const Cart: React.FC = () => {
-  return <div>Cart</div>
+  return <PaymentDetail />
 }
 
 export default Cart

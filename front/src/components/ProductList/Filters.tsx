@@ -19,6 +19,7 @@ const Filters: React.FC = () => {
       <h3 className='mt-1'>Ordenar por</h3>
       <p className=''>mac</p>
       <p className=''>sony</p>
+
       <button className='primary-button px-4 mx-auto mt-1'>Filtrar</button>
     </div>
   )

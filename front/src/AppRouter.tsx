@@ -13,7 +13,7 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.cart} element={<Cart />} />
-        <Route path={`${routes.products}/:id`} element={<ProductDetail />} />
+        <Route path={`${routes.products}/:_id`} element={<ProductDetail />} />
         <Route path={routes.products} element={<ProductList />} />
       </Routes>
     </WebLayout>

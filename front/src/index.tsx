@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'assets/styles/index.scss'
-import AppRouter from './AppRouter'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from 'store'
 import { QueryClientProvider, QueryClient } from 'react-query'
+
+import ScrollToTop from 'commons/ScrollToTop'
+import AppRouter from './AppRouter'
+
+import 'assets/styles/index.scss'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +23,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <AppRouter />
+          <ScrollToTop>
+            <AppRouter />
+          </ScrollToTop>
         </QueryClientProvider>
       </Provider>
     </BrowserRouter>
