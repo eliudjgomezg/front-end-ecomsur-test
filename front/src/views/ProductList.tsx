@@ -4,9 +4,11 @@ import { selectProductList } from 'store/productsStore/reducer'
 import { connect } from 'react-redux'
 import { IReduxState } from 'models/IReduxStore'
 import useFilterByWord from 'customHooks/useFilterByWord'
+import useAnimation from 'customHooks/useAnimation'
 
-import Filters from 'components/home/Filters'
-import ProductList from 'components/home/ProductList'
+import Filters from 'components/ProductList/Filters'
+import ProductList from 'components/ProductList/ProductList'
+import MobileModal from 'commons/MobileModal'
 
 type TProducts = {
   productList?: IProduct[]
@@ -14,6 +16,7 @@ type TProducts = {
 
 const Products: React.FC<TProducts> = (props) => {
   const filter = useFilterByWord()
+  const { isComponentOpen, animation, toggleComponent, toggleAnimation } = useAnimation()
   const [productList, setProductList] = useState<IProduct[]>([])
 
   useEffect(() => {
@@ -30,6 +33,9 @@ const Products: React.FC<TProducts> = (props) => {
       </div>
 
       <div className='products-grid'>
+        <button className='primary-button px-4 mx-auto mt-1 d-mobile' onClick={toggleComponent}>
+          Filtros
+        </button>
         <div className='border-r-gray d-desktop'>
           <Filters />
         </div>
@@ -37,6 +43,20 @@ const Products: React.FC<TProducts> = (props) => {
           <ProductList productList={productList} />
         </div>
       </div>
+
+      <MobileModal
+        isOpen={isComponentOpen}
+        animation={animation}
+        toggleAnimation={toggleAnimation}
+        toggleComponent={toggleComponent}
+      >
+        <div className='product-list__mobile-filter'>
+          <div className='exit-icon'>
+            <i className='fas fa-times-circle fa-lg text-gray block' onClick={toggleComponent}></i>
+          </div>
+          <Filters />
+        </div>
+      </MobileModal>
     </>
   )
 }

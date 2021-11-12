@@ -1,5 +1,7 @@
+import Detail from 'components/ProductDetail/Detail'
+
 const ProductDetail: React.FC = () => {
-  return <div>ProductDetail</div>
+  return <Detail />
 }
 
 export default ProductDetail

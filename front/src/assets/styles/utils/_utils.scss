@@ -22,29 +22,51 @@
     }
 }
 
-.cursor-pointer {
-    cursor: pointer;
+//Positions
+.relative {
+  position: relative !important;
 }
 
 //Display
+.hidden {
+    display: none !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.block {
+    display: block !important;
+}
+
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .alig-center {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.justify-self-center {
+    justify-self: center !important;
 }
 
 .justify-center {
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.justify-end {
+    display: flex !important;
+    justify-content: flex-end !important;
 }
 
 .total-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .d-desktop {
@@ -72,12 +94,28 @@
     padding: 0 4rem;
 }
 
+.mr-1 {
+    margin-right: 1rem;
+}
+
 .mx-auto {
     margin: auto;
 }
 
+.mx-05 {
+    margin: 0 .5rem;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
 .mt-1 {
     margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
 }
 
 .mb-2 {
@@ -86,6 +124,11 @@
 
 .mr-05 {
     margin-right: .5rem;
+}
+
+//sizing
+.w-full {
+    width: 100%;
 }
 
 //hovers

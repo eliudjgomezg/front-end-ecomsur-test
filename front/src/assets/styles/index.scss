@@ -5,10 +5,16 @@
 
 @import "components/filter-by-word.scss";
 @import "components/products.scss";
+@import "components/product-detail.scss";
 @import "components/product-card.scss";
+@import "components/cart.scss";
+@import "components/cart-card.scss";
+@import "components/cart-counter.scss";
+@import "components/mobile-modal.scss";
 
 @import "layouts/web-layout.scss";
 @import "layouts/header.scss";
 @import "layouts/footer.scss";
 
 @import "utils/utils.scss";
+@import "utils/animations.scss";

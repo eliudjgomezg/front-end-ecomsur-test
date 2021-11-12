@@ -1,0 +1,38 @@
+.cart-card {
+    display: grid;
+    grid-template-columns: 60% 1fr;
+
+    div {
+        h1, h3 {
+            color: $primary;
+        }
+
+        p {
+            color: $gray !important;
+            margin: 0 !important;
+        }
+
+        &:first-child {
+            p, img {
+                margin-top: 1rem;
+            }
+
+            img {
+                width: 10rem;
+                height: 12rem;
+                border-radius: 10px;
+            }
+        }
+
+        &:last-child {
+            justify-self: flex-end !important;
+
+            p {
+              text-align: right;
+            }
+            h1 {
+                text-align: right;
+            }
+        }
+    }
+}

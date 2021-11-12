@@ -1,0 +1,17 @@
+.cart-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.2rem;
+    padding: 0 1.5rem;
+    border-radius: 1.5rem;
+    border: 2px solid $primary;
+
+    h3 {
+        margin-right: 2rem;
+    }
+
+    div {
+        margin-top: 0 !important;
+    }
+}
