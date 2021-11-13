@@ -1,6 +1,14 @@
 .cart-card {
     display: grid;
     grid-template-columns: 60% 1fr;
+    border-radius: 1rem;
+    box-shadow: $box-shadow-1;
+    padding: 1.5rem;
+
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 
     div {
         h1, h3 {
@@ -11,28 +19,57 @@
             color: $gray !important;
             margin: 0 !important;
         }
+    }
 
-        &:first-child {
-            p, img {
-                margin-top: 1rem;
-            }
-
-            img {
-                width: 10rem;
-                height: 12rem;
-                border-radius: 10px;
-            }
+    &__product-data {
+        p, img {
+            margin-top: 1rem;
         }
 
-        &:last-child {
-            justify-self: flex-end !important;
+        img {
+            width: 10rem;
+            height: 12rem;
+            border-radius: 10px;
+        }
+    }
 
-            p {
-              text-align: right;
-            }
-            h1 {
-                text-align: right;
-            }
+    &__product-price {
+        justify-self: flex-end;
+
+        p {
+            text-align: right;
+        }
+
+        h1 {
+            text-align: right;
+        }
+    }
+
+    &__remove-filters {
+        cursor: pointer;
+        color: $red;
+        align-self: center;
+        justify-self: flex-start;
+        order: 0;
+
+        @include breakpoint(tablet) {
+            align-self: center;
+            justify-self: center;
+            order: 1;
+            margin-top: 1rem;
+        }
+    }
+
+    &__counters {
+        align-self: center;
+        justify-self: flex-end;
+        order: 1;
+
+        @include breakpoint(tablet) {
+            margin-top: 2rem;
+            align-self: center;
+            justify-self: center;
+            order: 0;
         }
     }
 }

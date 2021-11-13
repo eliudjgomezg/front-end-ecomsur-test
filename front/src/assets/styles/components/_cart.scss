@@ -8,8 +8,7 @@
         grid-template-columns: 1fr;
     }
 
-    div {
-        &:first-child {
+        &__product-data {
             h1 {
                 color: $gray;
 
@@ -20,7 +19,7 @@
             }
         }
 
-        &:last-child {
+        &__product-price {
             h1, h2, h3 {
                 color: $primary;
             }
@@ -42,6 +41,5 @@
                 display: flex;
                 justify-content: space-between;
             }
-        }
     }
 }

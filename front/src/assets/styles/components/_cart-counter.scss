@@ -1,4 +1,4 @@
-.cart-items {
+.count-items {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,6 +6,9 @@
     padding: 0 1.5rem;
     border-radius: 1.5rem;
     border: 2px solid $primary;
+    margin-top: 0;
+    width: 9.5rem;
+    //height: 2.2rem;
 
     h3 {
         margin-right: 2rem;

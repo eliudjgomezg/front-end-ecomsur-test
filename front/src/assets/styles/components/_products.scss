@@ -39,11 +39,7 @@
         cursor: pointer;
         padding-left: .3rem;
         color: $gray;
-
-        &:hover {
-            background-color: $light-gray;
-            transition: all .3s;
-        }
+        margin-top: .3rem;
     }
 }
 
@@ -72,4 +68,11 @@
 .exit-icon {
     display: flex;
     justify-content: flex-end;
+}
+
+.no-products {
+  height: 70vh;
+  h1{
+    font-size: 4rem;
+  }
 }

@@ -9,4 +9,6 @@ export interface IProduct {
   countInStock: number
   rating: number
   numReviews: number
+  countSelected: number
+  cartPrice: number
 }
