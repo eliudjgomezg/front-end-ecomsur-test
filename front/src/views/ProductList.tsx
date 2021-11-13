@@ -18,12 +18,81 @@ const Products: React.FC<TProducts> = (props) => {
   const filter = useFilterByWord()
   const { isComponentOpen, animation, toggleComponent, toggleAnimation } = useAnimation()
   const [productList, setProductList] = useState<IProduct[]>([])
+  const [selectedBrand, setSelectedBrand] = useState<string[]>([])
+  const [orderBy, setOrderBy] = useState<string>('all')
+
+  const handleBrandFIlter = (brand: string) => {
+    const isExist = selectedBrand.some((iter: string) => iter === brand)
+    if (isExist) {
+      const removeBrand = selectedBrand.filter((iter: string) => iter !== brand)
+      setSelectedBrand(removeBrand)
+    } else {
+      setSelectedBrand([...selectedBrand, brand])
+    }
+  }
+
+  const handleOrderBy = (order: string) => {
+    const dispatch: { [key: string]: () => void } = {
+      all: () => setProductList(productList.sort((a, b) => a.price - b.price)),
+      lower_price: () => setProductList(productList.sort((a, b) => a.price - b.price)),
+      higger_price: () => setProductList(productList.sort((a, b) => b.price - a.price)),
+      raiting: () => setProductList(productList.sort((a, b) => b.rating - a.rating)),
+      likes: () => setProductList(productList.sort((a, b) => b.numReviews - a.numReviews)),
+    }
+    dispatch[order]()
+    setOrderBy(order)
+  }
+
+  const removeAllFilters = () => {
+    setSelectedBrand([])
+    setOrderBy('all')
+    filter.setWord('')
+  }
 
   useEffect(() => {
     if (props.productList?.length) {
       setProductList(props.productList)
     }
   }, [props.productList])
+
+  useEffect(() => {
+    if (props.productList?.length) {
+      if (filter.word.length) {
+        const listFiltered = props?.productList.filter((product: IProduct) => {
+          const parsedFilterWord = filter.word.toLocaleLowerCase()
+          const isBrand = product.brand.toLocaleLowerCase().includes(parsedFilterWord)
+          const isName = product.name.toLocaleLowerCase().includes(parsedFilterWord)
+          return isBrand || isName
+        })
+        setProductList(listFiltered)
+      } else {
+        setProductList(props?.productList)
+      }
+    }
+  }, [filter.word])
+
+  useEffect(() => {
+    if (props.productList?.length) {
+      if (selectedBrand.length) {
+        const listFiltered = props?.productList.filter((product: IProduct) => {
+          return selectedBrand.some((iter: string) => iter === product.brand)
+        })
+        setProductList(listFiltered)
+      } else {
+        setProductList(props?.productList)
+      }
+    }
+  }, [selectedBrand])
+
+  const defaultProps = {
+    productList: productList,
+    productListQuery: props?.productList,
+    selectedBrand: selectedBrand,
+    orderBy: orderBy,
+    handleBrandFIlter: handleBrandFIlter,
+    handleOrderBy: handleOrderBy,
+    removeAllFilters: removeAllFilters,
+  }
 
   return (
     <>
@@ -37,10 +106,10 @@ const Products: React.FC<TProducts> = (props) => {
           Filtros
         </button>
         <div className='border-r-gray d-desktop'>
-          <Filters />
+          <Filters {...defaultProps} />
         </div>
         <div className=''>
-          <ProductList productList={productList} />
+          <ProductList {...defaultProps} />
         </div>
       </div>
 
@@ -54,7 +123,7 @@ const Products: React.FC<TProducts> = (props) => {
           <div className='exit-icon'>
             <i className='fas fa-times-circle fa-lg text-gray block' onClick={toggleComponent}></i>
           </div>
-          <Filters />
+          <Filters {...defaultProps} />
         </div>
       </MobileModal>
     </>

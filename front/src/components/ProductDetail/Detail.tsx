@@ -3,16 +3,49 @@ import { useProductQuery } from 'customHooks/request/productsQuery'
 import { useParams } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 import webPay from 'assets/images/webpay-logo.png'
-import CartCounter from 'commons/CartCounter'
+import setProductCartList from 'store/cartStore/action'
+import { connect } from 'react-redux'
+import { ISetProductListReturn } from 'models/IProductListAction'
+import { selectProductCartList } from 'store/cartStore/reducer'
+import { IReduxState } from 'models/IReduxStore'
+import useLocalStorage from 'customHooks/useLocalStorage'
 
 interface ParamTypes {
   _id: string
 }
 
-const Detail: React.FC = () => {
+type TDetail = {
+  setProductCartList?: (payload: IProduct[]) => ISetProductListReturn
+  productCartList?: IProduct[]
+}
+
+const Detail: React.FC<TDetail> = (props) => {
+  const storage = useLocalStorage('cartList', [])
   const param = useParams<ParamTypes>()
   const productQuery = useProductQuery(param._id)
-  const hasStock = productQuery.data?.countInStock > 0
+
+  const hasStock = productQuery?.data?.countInStock > 0
+
+  const setProduct = () => {
+    if (props.productCartList && productQuery) {
+      if (isProductSelected()) {
+        const newCartList = props.productCartList.filter((iter: IProduct) => iter._id !== productQuery?.data?._id)
+        props.setProductCartList && props.setProductCartList(newCartList)
+        storage.setValue(newCartList)
+        return
+      }
+      const productEdited = { ...productQuery?.data, countSelected: 1, cartPrice: productQuery?.data?.price }
+      const newCartList = [...props.productCartList, productEdited]
+      props.setProductCartList && props.setProductCartList(newCartList)
+      storage.setValue(newCartList)
+    }
+  }
+
+  const isProductSelected = () => {
+    if (props.productCartList && productQuery) {
+      return props.productCartList.some((product: IProduct) => product._id === productQuery?.data?._id)
+    }
+  }
 
   return (
     <div className='product'>
@@ -20,7 +53,7 @@ const Detail: React.FC = () => {
 
       <div>
         <h1>
-          {productQuery?.data?.brand} <span className='text-primary'>{productQuery.data?.name}</span>
+          {productQuery?.data?.brand} <span className='text-primary'>{productQuery?.data?.name}</span>
         </h1>
         <h2>{productQuery?.data?.description}</h2>
         <div className='mt-1'>
@@ -47,10 +80,22 @@ const Detail: React.FC = () => {
         <hr />
 
         <div className='mt-2 justify-end'>
-          {hasStock && <CartCounter className='mt-0 mr-1' hasStock={hasStock} />}
-          <button className={`primary-button px-1 ${!hasStock && 'button-disabled'}`} disabled={!hasStock}>
-            <i className='fas fa-cart-plus fa-lg mr-05'></i>
-            <span className='d-desktop p--md'>Agregar al carro</span>
+          <button
+            className={`primary-button px-1 ${!hasStock && 'button-disabled'}`}
+            onClick={() => setProduct()}
+            disabled={!hasStock}
+          >
+            {isProductSelected() ? (
+              <>
+                <i className='fas fa-trash-alt fa-md mr-05 text-red'></i>
+                <span className='p--md'>Eliminar</span>
+              </>
+            ) : (
+              <>
+                <i className='fas fa-cart-plus fa-mmd mr-05'></i>
+                <span className='p--md'>Agregar</span>
+              </>
+            )}
           </button>
         </div>
 
@@ -88,4 +133,10 @@ const Detail: React.FC = () => {
   )
 }
 
-export default Detail
+const mapStateToProps = (state: IReduxState) => {
+  return {
+    productCartList: selectProductCartList(state),
+  }
+}
+
+export default connect(mapStateToProps, { setProductCartList })(Detail)

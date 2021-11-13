@@ -1,84 +1,48 @@
-import CartCard from 'commons/CartCard'
+import { useEffect, useState } from 'react'
 import routes from 'constants/routes'
+import { IProduct } from 'models/IProduct'
+import { IReduxState } from 'models/IReduxStore'
 import { Link } from 'react-router-dom'
+import { selectProductCartList } from 'store/cartStore/reducer'
+import { connect } from 'react-redux'
 
-const PaymentDetail: React.FC = () => {
+import CartCard from 'commons/CartCard'
+import { formatNum } from 'utils/helpers'
+
+type TPaymentDetail = {
+  productCartList?: IProduct[]
+}
+
+const PaymentDetail: React.FC<TPaymentDetail> = (props) => {
+  const [totalPayment, setTotalPayment] = useState(0)
+
+  useEffect(() => {
+    if (props.productCartList) {
+      const total = props.productCartList?.reduce((acum, iter) => (acum = acum + iter.price), 0)
+      setTotalPayment(total)
+    }
+  }, [props.productCartList])
+
   return (
     <div className='cart'>
-      <div>
+      <div className='cart__product-data'>
         <h1 className='text-primary'>
-          <span className='text-primary'>Carro</span> | 2 productos
+          <span className='text-primary'>Carro</span> | {props.productCartList?.length} productos
         </h1>
         <hr />
 
-        <CartCard
-          product={{
-            _id: '1',
-            name: 'Airpods Wireless Bluetooth Headphones',
-            image: '/images/airpods.jpg',
-            description:
-              'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-            brand: 'Apple',
-            category: 'Electronics',
-            price: 89.99,
-            countInStock: 10,
-            rating: 4.5,
-            numReviews: 12,
-          }}
-        />
-        <CartCard
-          product={{
-            _id: '1',
-            name: 'Airpods Wireless Bluetooth Headphones',
-            image: '/images/airpods.jpg',
-            description:
-              'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-            brand: 'Apple',
-            category: 'Electronics',
-            price: 89.99,
-            countInStock: 10,
-            rating: 4.5,
-            numReviews: 12,
-          }}
-        />
-        <CartCard
-          product={{
-            _id: '1',
-            name: 'Airpods Wireless Bluetooth Headphones',
-            image: '/images/airpods.jpg',
-            description:
-              'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-            brand: 'Apple',
-            category: 'Electronics',
-            price: 89.99,
-            countInStock: 10,
-            rating: 4.5,
-            numReviews: 12,
-          }}
-        />
-        <CartCard
-          product={{
-            _id: '1',
-            name: 'Airpods Wireless Bluetooth Headphones',
-            image: '/images/airpods.jpg',
-            description:
-              'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-            brand: 'Apple',
-            category: 'Electronics',
-            price: 89.99,
-            countInStock: 10,
-            rating: 4.5,
-            numReviews: 12,
-          }}
-        />
+        {props.productCartList?.map((product: IProduct) => {
+          return <CartCard key={product._id} product={product} />
+        })}
       </div>
-      <div>
+
+      <div className='cart__product-price'>
         <h1 className='text-primary'>Total</h1>
         <hr />
 
         <div>
           <h3>Total a pagar</h3>
-          <h2>$ 3000.000</h2>
+          <h2>{formatNum(totalPayment)}</h2>
         </div>
 
         <p>
@@ -93,4 +57,10 @@ const PaymentDetail: React.FC = () => {
   )
 }
 
-export default PaymentDetail
+const mapStateToProps = (state: IReduxState) => {
+  return {
+    productCartList: selectProductCartList(state),
+  }
+}
+
+export default connect(mapStateToProps)(PaymentDetail)

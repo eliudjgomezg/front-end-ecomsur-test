@@ -1,13 +1,23 @@
 import { Link } from 'react-router-dom'
 import routes from 'constants/routes'
 import useAnimation from 'customHooks/useAnimation'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { selectProductCartList } from 'store/cartStore/reducer'
+import { IProduct } from 'models/IProduct'
+import { IReduxState } from 'models/IReduxStore'
 
 import MobileModal from 'commons/MobileModal'
-import { useNavigate } from 'react-router-dom'
 
-const Header: React.FC = () => {
+type THeader = {
+  productCartList?: IProduct[]
+}
+
+const Header: React.FC<THeader> = (props) => {
   const navigate = useNavigate()
   const { isComponentOpen, animation, toggleComponent, toggleAnimation } = useAnimation()
+
+  const countCartItems = props.productCartList ? props.productCartList?.length : 0
 
   const handleNavigate = (path: string) => {
     toggleComponent()
@@ -17,9 +27,9 @@ const Header: React.FC = () => {
     <>
       <div className='header-container'>
         <div className='header container'>
-          <h1 className='cursor-pointer' onClick={() => handleNavigate(routes.cart)}>
-            eFactory
-          </h1>
+          <Link to={routes.home}>
+            <h1 className='cursor-pointer'>eFactory</h1>
+          </Link>
 
           <div className='header__actions-desktop'>
             <div className='actions-items'>
@@ -34,7 +44,7 @@ const Header: React.FC = () => {
               <div className='actions-items'>
                 <i className='fas fa-shopping-cart text-primary'></i>
                 <p className='text-primary relative'>
-                  <span className='total-center p--xs cart-badge'>1</span> Mi carro
+                  {countCartItems > 0 && <span className='total-center p--xs cart-badge'>{countCartItems}</span>} Mi carro
                 </p>
               </div>
             </Link>
@@ -64,7 +74,8 @@ const Header: React.FC = () => {
           <div className='actions-items' onClick={() => handleNavigate(routes.cart)}>
             <i className='fas fa-shopping-cart text-primary'></i>
             <p className='text-primary relative w-full'>
-              <span className='total-center p--xs cart-badge'>1</span> Mi carro
+              {countCartItems > 0 && <span className='total-center p--xs cart-badge'>{countCartItems}</span>}
+              Mi carro
             </p>
           </div>
         </div>
@@ -73,4 +84,10 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+const mapStateToProps = (state: IReduxState) => {
+  return {
+    productCartList: selectProductCartList(state),
+  }
+}
+
+export default connect(mapStateToProps)(Header)

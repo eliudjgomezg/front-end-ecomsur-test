@@ -38,10 +38,6 @@
             color: $gray;
         }
 
-        div {
-            display: flex;
-            justify-content: space-between;
-        }
     }
 
     &__delivery {
@@ -60,6 +56,4 @@
             margin-top: 2rem !important;
         }
     }
-
-   
 }

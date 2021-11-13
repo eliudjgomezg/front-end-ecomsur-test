@@ -24,7 +24,7 @@
 
 //Positions
 .relative {
-  position: relative !important;
+    position: relative !important;
 }
 
 //Display
@@ -47,6 +47,10 @@
 .alig-center {
     display: flex !important;
     align-items: center !important;
+}
+
+.alig-self-center {
+    align-self: center !important;
 }
 
 .justify-self-center {
@@ -147,6 +151,24 @@
 //Others
 .cursor-pointer {
     cursor: pointer;
+}
+
+.text-align {
+    text-align: right;
+}
+
+.float-right {
+  float: right
+}
+
+.home {
+    width: 70%;
+    height: 70vh;
+    overflow: auto;
+
+    @include breakpoint(mobile) {
+        width: 90%;
+    }
 }
 
 @include breakpoint(mobile) {
